@@ -1,27 +1,17 @@
-    // ask player for selection
-
-    // store player selection
 
 function playRound(playerSelection, computerSelection) {
-    //make playerSelection uniform
-    let pSelect = playerSelection.toLowerCase();
-    pSelect = pSelect[0].toUpperCase()+pSelect.slice(1)
-    
     // compare computer and player selction
     // select winner or draw
-    if(pSelect === computerSelection ) {
+    if(playerSelection === computerSelection ) {
         return "It's a draw!"
-    } else if (pSelect === 'Rock' && computerSelection === 'Paper'
-            || pSelect === 'Scissors' && computerSelection === 'Rock'
-            || pSelect === 'Paper' && computerPlay === 'Scissors') {
-                return `You Lose! ${computerSelection} beats ${pSelect.toLowerCase()}.`
+    } else if (playerSelection === 'Rock' && computerSelection === 'Paper'
+            || playerSelection === 'Scissors' && computerSelection === 'Rock'
+            || playerSelection === 'Paper' && computerPlay === 'Scissors') {
+                return `You Lose! ${computerSelection} beats ${playerSelection.toLowerCase()}.`
     } 
-    return `You win! ${pSelect} beats ${computerSelection.toLowerCase()}.`
+    return `You win! ${playerSelection} beats ${computerSelection.toLowerCase()}.`
 }
 
-const playerSelection = 'Rock'
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
 
 // generate computer selection randomly
 function computerPlay() {
@@ -33,6 +23,15 @@ function computerPlay() {
     return choices[pick]
 }
 
+function playerPlay() {
+    // ask player for selection
+    const pSelect = prompt('Rock, paper, or scissors?', '');
+    
+    //make player selection uniform (only first letter upper case)
+    let pChoice = pSelect.toLowerCase();
+    pChoice = pChoice[0].toUpperCase()+pChoice.slice(1)
+    return pChoice;
+}
 
 
 
