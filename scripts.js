@@ -33,5 +33,30 @@ function playerPlay() {
     return pChoice;
 }
 
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = playerPlay();
+        const computerSelection = computerPlay();
+        
+        // add score to winner
+        const roundResult = playRound(playerSelection, computerSelection);
+        if (roundResult.includes("win")) {
+            ++playerScore;
+        } else if (roundResult.includes("Lose")) {
+            ++computerScore;
+        }
+
+        // Show score after each round
+        console.log(`Player Score: ${playerScore}`);
+        console.log(`Computer Score: ${computerScore}`);
+    }
+    
+    if (playerScore > computerScore) return "You win!"
+    else if (playerScore< computerScore) return "You lose.."
+    return "It's a draw"
+}
 
 
