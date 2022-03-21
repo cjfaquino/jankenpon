@@ -2,25 +2,34 @@
 function playRound(playerSelection, computerSelection) {
     // compare computer and player selction
     // select winner or draw
+
+    const loseText = `You lose! ${computerSelection} beats ${playerSelection.toLowerCase()}.`;
+    const winText = `You win! ${playerSelection} beats ${computerSelection.toLowerCase()}.`;
+    const drawText = "It's a draw!";
+
     if(playerSelection === computerSelection ) {
-        return "It's a draw!"
+        console.log(drawText);
+        return drawText
     } else if (playerSelection === 'Rock' && computerSelection === 'Paper'
             || playerSelection === 'Scissors' && computerSelection === 'Rock'
             || playerSelection === 'Paper' && computerPlay === 'Scissors') {
-                return `You Lose! ${computerSelection} beats ${playerSelection.toLowerCase()}.`
+                console.log(loseText);
+                return loseText
     } 
-    return `You win! ${playerSelection} beats ${computerSelection.toLowerCase()}.`
+    console.log(winText);
+    return winText
 }
 
 
 // generate computer selection randomly
 function computerPlay() {
-    let choices = ['Rock', 'Paper', 'Scissors']
+    const choices = ['Rock', 'Paper', 'Scissors']
 
     //generate random number up to arrayLength
     const pick = Math.floor(Math.random()*choices.length)
-
-    return choices[pick]
+    const cpuChoice = choices[pick];
+    console.log(`Computer plays ${cpuChoice.toLowerCase()}.`);
+    return cpuChoice
 }
 
 function playerPlay() {
@@ -30,6 +39,7 @@ function playerPlay() {
     //make player selection uniform (only first letter upper case)
     let pChoice = pSelect.toLowerCase();
     pChoice = pChoice[0].toUpperCase()+pChoice.slice(1)
+    console.log(`Player picks ${pChoice.toLowerCase()}.`)
     return pChoice;
 }
 
@@ -45,18 +55,19 @@ function game() {
         const roundResult = playRound(playerSelection, computerSelection);
         if (roundResult.includes("win")) {
             ++playerScore;
-        } else if (roundResult.includes("Lose")) {
+        } else if (roundResult.includes("lose")) {
             ++computerScore;
         }
 
         // Show score after each round
         console.log(`Player Score: ${playerScore}`);
         console.log(`Computer Score: ${computerScore}`);
+        console.log(`=======================`);
     }
     
-    if (playerScore > computerScore) return "You win!"
-    else if (playerScore< computerScore) return "You lose.."
-    return "It's a draw"
+    if (playerScore > computerScore) return "Final Result: You win!"
+    else if (playerScore< computerScore) return "Final Result: You lose.."
+    return "Final Result: It's a draw."
 }
 
 
