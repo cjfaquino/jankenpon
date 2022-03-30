@@ -29,7 +29,8 @@ function computerPlay() {
     //generate random number up to arrayLength
     const pick = Math.floor(Math.random()*choices.length)
     const cpuChoice = choices[pick];
-    console.log(`Computer plays ${cpuChoice.toLowerCase()}.`);
+    const cText = `Computer plays ${cpuChoice.toLowerCase()}.`;
+    createDiv(cText, 'body');
     return cpuChoice
 }
 
