@@ -9,15 +9,15 @@ function playRound(playerSelection, computerSelection) {
     const drawText = "It's a draw!";
 
     if(playerSelection === computerSelection ) {
-        createDiv(drawText);
+        createDiv(drawText, 'body');
         return drawText;
     } else if (playerSelection === 'Rock' && computerSelection === 'Paper'
             || playerSelection === 'Scissors' && computerSelection === 'Rock'
             || playerSelection === 'Paper' && computerPlay === 'Scissors') {
-                createDiv(loseText);
+                createDiv(loseText, 'body');
                 return loseText;
     } 
-    createDiv(winText);
+    createDiv(winText, 'body');
     return winText;
 }
 
@@ -61,10 +61,11 @@ function game(pSelect) {
         // Show score after each round
         pScore.textContent = playerScore;
         cScore.textContent = computerScore;
+        } else {
+            if (playerScore > computerScore) return createDiv("Final Result: You win!", 'section')
+            else if (playerScore< computerScore) return createDiv("Final Result: You lose..", 'section')
+            return "Final Result: It's a draw."
         }
-    if (playerScore > computerScore) return "Final Result: You win!"
-    else if (playerScore< computerScore) return "Final Result: You lose.."
-    return "Final Result: It's a draw."
 }
 
 function playerSelection() {
@@ -75,9 +76,9 @@ const buttons = document.querySelectorAll('#rock,#paper,#scissors');
 buttons.forEach(button => button.addEventListener('click', playerSelection))
 
 
-function createDiv(str){
-    const container = document.querySelector('body')
+function createDiv(str, container){
+    const cont = document.querySelector(container)
     const div = document.createElement('div');
     div.innerText = str;
-    container.appendChild(div)
+    cont.appendChild(div)
 }
