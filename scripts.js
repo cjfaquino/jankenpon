@@ -1,4 +1,5 @@
 
+
 function playRound(playerSelection, computerSelection) {
     // compare computer and player selction
     // select winner or draw
@@ -70,7 +71,10 @@ function game() {
 function pickSelection(e){
     const button = document.querySelector(`button[id="${e.target.id}"]`)
     if (!button) return;
-    return playerPlay(button.id);
+    const pPlay = playerPlay(button.id);
+    const cPlay = computerPlay();
+
+    playRound(pPlay, cPlay);
 }
 
 window.addEventListener('click', pickSelection)
