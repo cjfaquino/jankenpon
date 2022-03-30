@@ -32,52 +32,48 @@ function computerPlay() {
     console.log(`Computer plays ${cpuChoice.toLowerCase()}.`);
     return cpuChoice
 }
-
+let gameMode = true;
 function playerPlay(pSelect) {
     //make player selection uniform (only first letter upper case)
     let pChoice = pSelect[0].toUpperCase()+pSelect.slice(1)
-    console.log(`Player picks ${pChoice.toLowerCase()}.`)
-    return pChoice;
+    return game(pChoice);
 }
 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
+function game(pSelect) {
+    const pScore = document.getElementById('playerScore');
+    const cScore = document.getElementById('compScore');
+    
+    let playerScore = parseInt(pScore.textContent);
+    let computerScore = parseInt(cScore.textContent);
 
-    for (let i = 0; i < 5; i++) {
-        const playerSelection = playerPlay();
-        const computerSelection = computerPlay();
-        
-        // add score to winner
-        const roundResult = playRound(playerSelection, computerSelection);
+
+    if(gameMode) {
+        const cSelect = computerPlay();
+        const roundResult = playRound(pSelect, cSelect)
         if (roundResult.includes("win")) {
             ++playerScore;
+            if (playerScore >= 5) gameMode = false;
         } else if (roundResult.includes("lose")) {
             ++computerScore;
+            if (computerScore >= 5) gameMode = false;
         }
 
         // Show score after each round
-        console.log(`Player Score: ${playerScore}`);
-        console.log(`Computer Score: ${computerScore}`);
-        console.log(`=======================`);
-    }
-    
+        pScore.textContent = playerScore;
+        cScore.textContent = computerScore;
+        }
     if (playerScore > computerScore) return "Final Result: You win!"
     else if (playerScore< computerScore) return "Final Result: You lose.."
     return "Final Result: It's a draw."
 }
 
+function playerSelection() {
+    return playerPlay(this.id);
+    }
 
-function pickSelection(e){
-    const button = document.querySelector(`button[id="${e.target.id}"]`)
-    if (!button) return;
-    const pPlay = playerPlay(button.id);
-    const cPlay = computerPlay();
+const buttons = document.querySelectorAll('#rock,#paper,#scissors');
+buttons.forEach(button => button.addEventListener('click', playerSelection))
 
-    playRound(pPlay, cPlay);
-}
-
-window.addEventListener('click', pickSelection)
 
 function createDiv(str){
     const container = document.querySelector('body')
