@@ -32,13 +32,9 @@ function computerPlay() {
     return cpuChoice
 }
 
-function playerPlay() {
-    // ask player for selection
-    const pSelect = prompt('Rock, paper, or scissors?', '');
-    
+function playerPlay(pSelect) {
     //make player selection uniform (only first letter upper case)
-    let pChoice = pSelect.toLowerCase();
-    pChoice = pChoice[0].toUpperCase()+pChoice.slice(1)
+    let pChoice = pSelect[0].toUpperCase()+pSelect.slice(1)
     console.log(`Player picks ${pChoice.toLowerCase()}.`)
     return pChoice;
 }
@@ -71,3 +67,10 @@ function game() {
 }
 
 
+function pickSelection(e){
+    const button = document.querySelector(`button[id="${e.target.id}"]`)
+    if (!button) return;
+    return playerPlay(button.id);
+}
+
+window.addEventListener('click', pickSelection)
