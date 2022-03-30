@@ -9,16 +9,16 @@ function playRound(playerSelection, computerSelection) {
     const drawText = "It's a draw!";
 
     if(playerSelection === computerSelection ) {
-        console.log(drawText);
-        return drawText
+        createDiv(drawText);
+        return drawText;
     } else if (playerSelection === 'Rock' && computerSelection === 'Paper'
             || playerSelection === 'Scissors' && computerSelection === 'Rock'
             || playerSelection === 'Paper' && computerPlay === 'Scissors') {
-                console.log(loseText);
-                return loseText
+                createDiv(loseText);
+                return loseText;
     } 
-    console.log(winText);
-    return winText
+    createDiv(winText);
+    return winText;
 }
 
 
@@ -78,3 +78,10 @@ function pickSelection(e){
 }
 
 window.addEventListener('click', pickSelection)
+
+function createDiv(str){
+    const container = document.querySelector('body')
+    const div = document.createElement('div');
+    div.innerText = str;
+    container.appendChild(div)
+}
