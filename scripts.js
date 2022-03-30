@@ -32,7 +32,7 @@ function computerPlay() {
     console.log(`Computer plays ${cpuChoice.toLowerCase()}.`);
     return cpuChoice
 }
-let gameMode = true;
+
 function playerPlay(pSelect) {
     //make player selection uniform (only first letter upper case)
     let pChoice = pSelect[0].toUpperCase()+pSelect.slice(1)
@@ -46,8 +46,6 @@ function game(pSelect) {
     let playerScore = parseInt(pScore.textContent);
     let computerScore = parseInt(cScore.textContent);
 
-
-    if(gameMode) {
         const cSelect = computerPlay();
         const roundResult = playRound(pSelect, cSelect)
         if (roundResult.includes("win")) {
@@ -57,19 +55,17 @@ function game(pSelect) {
             ++computerScore;
             if (computerScore >= 5) gameMode = false;
         }
-
-        // Show score after each round
         pScore.textContent = playerScore;
         cScore.textContent = computerScore;
-        } else {
+        if(playerScore > 4 || computerScore > 4) {
             if (playerScore > computerScore) return createDiv("Final Result: You win!", 'section')
             else if (playerScore< computerScore) return createDiv("Final Result: You lose..", 'section')
             return "Final Result: It's a draw."
         }
 }
-
+let gameMode = true;
 function playerSelection() {
-    return playerPlay(this.id);
+    if (gameMode){return playerPlay(this.id);}
     }
 
 const buttons = document.querySelectorAll('#rock,#paper,#scissors');
