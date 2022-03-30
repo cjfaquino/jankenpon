@@ -46,24 +46,29 @@ function game(pSelect) {
     
     let playerScore = parseInt(pScore.textContent);
     let computerScore = parseInt(cScore.textContent);
+    let scoreToWin = 5;
 
-        const cSelect = computerPlay();
-        const roundResult = playRound(pSelect, cSelect)
-        if (roundResult.includes("win")) {
-            ++playerScore;
-            if (playerScore >= 5) gameMode = false;
-        } else if (roundResult.includes("lose")) {
-            ++computerScore;
-            if (computerScore >= 5) gameMode = false;
+    const cSelect = computerPlay();
+    const roundResult = playRound(pSelect, cSelect)
+    if (roundResult.includes("win")) {
+        pScore.textContent = ++playerScore;
+        if (playerScore >= scoreToWin) gameMode = false;
+    } else if (roundResult.includes("lose")) {
+        cScore.textContent = ++computerScore;
+        if (computerScore >= scoreToWin) gameMode = false;
         }
-        pScore.textContent = playerScore;
-        cScore.textContent = computerScore;
-        if(playerScore > 4 || computerScore > 4) {
-            if (playerScore > computerScore) return createDiv("Final Result: You win!", 'section')
-            else if (playerScore< computerScore) return createDiv("Final Result: You lose..", 'section')
-            return "Final Result: It's a draw."
+
+        if(playerScore >= scoreToWin || computerScore >= scoreToWin) {
+            showFinalResult(playerScore, computerScore)
         }
 }
+
+function showFinalResult(playerScore, computerScore) {
+    if (playerScore > computerScore) return createDiv("Final Result: You win!", 'section')
+    else if (playerScore< computerScore) return createDiv("Final Result: You lose..", 'section')
+    return "Final Result: It's a draw."
+}
+
 let gameMode = true;
 function playerSelection() {
     if (gameMode){return playerPlay(this.id);}
