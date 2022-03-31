@@ -9,15 +9,18 @@ function playRound(playerSelection, computerSelection) {
     const drawText = "It's a draw!";
 
     if(playerSelection === computerSelection ) {
-        createDiv(drawText, 'body');
+        deleteDiv('#result');
+        createDiv(drawText, '#result');
         return drawText;
     } else if (playerSelection === 'Rock' && computerSelection === 'Paper'
             || playerSelection === 'Scissors' && computerSelection === 'Rock'
             || playerSelection === 'Paper' && computerPlay === 'Scissors') {
-                createDiv(loseText, 'body');
+                deleteDiv('#result');
+                createDiv(loseText, '#result');
                 return loseText;
     } 
-    createDiv(winText, 'body');
+    deleteDiv('#result');
+    createDiv(winText, '#result');
     return winText;
 }
 
@@ -30,7 +33,8 @@ function computerPlay() {
     const pick = Math.floor(Math.random()*choices.length)
     const cpuChoice = choices[pick];
     const cText = `Computer plays ${cpuChoice.toLowerCase()}.`;
-    createDiv(cText, 'body');
+    deleteDiv('#result');
+    createDiv(cText, '#result');
     return cpuChoice
 }
 
@@ -64,9 +68,15 @@ function game(pSelect) {
 }
 
 function showFinalResult(playerScore, computerScore) {
-    if (playerScore > computerScore) return createDiv("Final Result: You win!", 'section')
-    else if (playerScore< computerScore) return createDiv("Final Result: You lose..", 'section')
-    return "Final Result: It's a draw."
+    if (playerScore > computerScore) {
+        deleteDiv('#result');
+        return createDiv("Final Result: You win!", '#result');
+    }
+    else if (playerScore< computerScore) {
+        deleteDiv('#result');
+        return createDiv("Final Result: You lose..", '#result');
+    }
+    return "Final Result: It's a draw.";
 }
 
 let gameMode = true;
@@ -83,4 +93,11 @@ function createDiv(str, container){
     const div = document.createElement('div');
     div.innerText = str;
     cont.appendChild(div)
+}
+
+function deleteDiv(container) {
+    const cont = document.querySelector(container);
+    while (cont.firstChild) {
+        cont.removeChild(cont.firstChild)
+    }
 }
