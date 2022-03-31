@@ -41,9 +41,11 @@ function playerPlay(pSelect) {
     return game(pChoice);
 }
 
+const pScore = document.getElementById('playerScore');
+const cScore = document.getElementById('compScore');
+
 function game(pSelect) {
-    const pScore = document.getElementById('playerScore');
-    const cScore = document.getElementById('compScore');
+    
     
     let playerScore = parseInt(pScore.textContent);
     let computerScore = parseInt(cScore.textContent);
@@ -64,6 +66,9 @@ function game(pSelect) {
         }
 }
 
+const resetButton = document.querySelector('#reset');
+resetButton.addEventListener('click', reset)
+
 function showFinalResult(playerScore, computerScore) {
     if (playerScore > computerScore) {
         deleteDiv('#result');
@@ -74,6 +79,13 @@ function showFinalResult(playerScore, computerScore) {
         return createDiv("Final Result: You lose..", '#result');
     }
     return "Final Result: It's a draw.";
+}
+
+function reset() {
+    pScore.textContent = 0;
+    cScore.textContent = 0;
+    deleteDiv('#result');
+    gameMode = true;
 }
 
 let gameMode = true;
