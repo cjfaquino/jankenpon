@@ -9,17 +9,14 @@ function playRound(playerSelection, computerSelection) {
     const drawText = "It's a draw!";
 
     if(playerSelection === computerSelection ) {
-        deleteDiv('#result');
         createDiv(drawText, '#result');
         return drawText;
     } else if (playerSelection === 'Rock' && computerSelection === 'Paper'
             || playerSelection === 'Scissors' && computerSelection === 'Rock'
-            || playerSelection === 'Paper' && computerPlay === 'Scissors') {
-                deleteDiv('#result');
+            || playerSelection === 'Paper' && computerPlay === 'Scissors') {              
                 createDiv(loseText, '#result');
                 return loseText;
-    } 
-    deleteDiv('#result');
+    }  
     createDiv(winText, '#result');
     return winText;
 }
