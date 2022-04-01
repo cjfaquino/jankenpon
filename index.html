@@ -7,16 +7,20 @@
     </head>
 
     <body>
-        <section>
-            <div>Player Score: <span id="playerScore">0</span></div>
-            <div>Computer Score : <span id="compScore">0</span></div>
+        <section id="topHalf">
+            <div class="wrapper">
+                <div>Computer Score : <span id="compScore">0</span></div>
+                <div>Player Score: <span id="playerScore">0</span></div>
+            </div>
         </section>
-        <div class="buttons">
-            <button id="rock">Rock</button>
-            <button id="paper">Paper</button>
-            <button id="scissors">Scissors</button>
-        </div>
-        <button id="reset">Reset</button>
+        <section id="bottomHalf">
+            <div class="buttons wrapper">
+                <button id="rock">Rock</button>
+                <button id="paper">Paper</button>
+                <button id="scissors">Scissors</button>
+                <button id="reset">Reset</button>
+            </div>
+        </section>
         <div id="result"></div>
         <script src="./scripts.js"></script>
     </body>
