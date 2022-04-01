@@ -5,8 +5,13 @@
 }
 
 .wrapper {
-  max-width: 800px;
+  max-width: 500px;
   margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
 }
 
 #topHalf {
@@ -14,7 +19,37 @@
   background: rgb(255, 222, 161);
 }
 
+.comp {
+  height: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#reset {
+  width: 50px;
+  align-self: flex-end;
+  margin-top: 0;
+  margin-bottom: auto;
+}
+
 #bottomHalf {
   height: 50vh;
   background: rgb(161, 255, 169);
 }
+
+.playerScore {
+  margin-top: 0;
+  margin-bottom: auto;
+}
+
+.buttons {
+  height: 100%;
+  justify-content: flex-end;
+  align-items:center;
+  gap: 4px;
+}
+
+.buttons > button {
+  width: 70px;
+}
+
