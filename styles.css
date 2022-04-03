@@ -14,6 +14,10 @@
   flex-direction: column;
 }
 
+#playerSelection, #compSelection {
+  height: 30vh;
+}
+
 #topHalf {
   height: 50vh;
   background: rgb(255, 222, 161);
@@ -23,6 +27,10 @@
   height: 100%;
   justify-content: flex-end;
   align-items: center;
+}
+
+#compSelection {
+  transform: rotate(180deg);
 }
 
 #reset {
@@ -37,7 +45,7 @@
   background: rgb(161, 255, 169);
 }
 
-.playerScore {
+#playerSelection {
   margin-top: 0;
   margin-bottom: auto;
 }
