@@ -19,6 +19,13 @@
   flex-direction: column;
 }
 
+button {
+  border-radius: 10px;
+  padding: 10px;
+  border: none;
+  background-color: white;
+}
+
 #playerSelection, #compSelection {
   height: 30vh;
 }
@@ -27,6 +34,7 @@
   background-color: white;
   width: 250px;
   text-align: center;
+  padding: 10px;
 }
 
 #topHalf {
