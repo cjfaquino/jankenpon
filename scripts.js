@@ -86,6 +86,8 @@ function reset() {
     pScore.textContent = 0;
     cScore.textContent = 0;
     deleteDiv('#result');
+    displaySelection('', 'playerSelection');
+    displaySelection('', 'compSelection')
     gameMode = true;
 }
 
@@ -123,5 +125,5 @@ function displaySelection(selection, player) {
         img.src = "./images/paper.svg"
     } else if(selection == 'scissors') {
         img.src = "./images/scissors.svg"
-    }
+    } else img.src = ""
 }
