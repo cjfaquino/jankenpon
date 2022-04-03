@@ -32,6 +32,7 @@ function computerPlay() {
     const cText = `Computer plays ${cpuChoice.toLowerCase()}.`;
     deleteDiv('#result');
     createDiv(cText, '#result');
+    displaySelection(cpuChoice.toLowerCase(), 'compSelection')
     return cpuChoice
 }
 
@@ -90,8 +91,11 @@ function reset() {
 
 let gameMode = true;
 function playerSelection() {
-    if (gameMode){return playerPlay(this.id);}
+    if (gameMode){
+        displaySelection(this.id, 'playerSelection')
+        return playerPlay(this.id);
     }
+}
 
 const buttons = document.querySelectorAll('#rock,#paper,#scissors');
 buttons.forEach(button => button.addEventListener('click', playerSelection))
@@ -108,5 +112,16 @@ function deleteDiv(container) {
     const cont = document.querySelector(container);
     while (cont.firstChild) {
         cont.removeChild(cont.firstChild)
+    }
+}
+
+function displaySelection(selection, player) {
+    const img = document.getElementById(player);
+    if(selection == 'rock') {
+        img.src = "./images/rock.svg"
+    } else if(selection == 'paper') {
+        img.src = "./images/paper.svg"
+    } else if(selection == 'scissors') {
+        img.src = "./images/scissors.svg"
     }
 }
