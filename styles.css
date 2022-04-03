@@ -21,7 +21,8 @@
 
 #topHalf {
   height: 50vh;
-  background: rgb(255, 222, 161);
+  background: rgb(59, 127, 255);
+  border-bottom: 5px solid;
 }
 
 .comp {
@@ -43,7 +44,8 @@
 
 #bottomHalf {
   height: 50vh;
-  background: rgb(161, 255, 169);
+  background: rgb(216, 56, 56);
+  border-top: 5px solid;
 }
 
 #playerSelection {
