@@ -1,3 +1,7 @@
+:root{
+  --borderRadius: 20px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -19,6 +23,12 @@
   height: 30vh;
 }
 
+.playerScore, .compScore {
+  background-color: white;
+  width: 250px;
+  text-align: center;
+}
+
 #topHalf {
   height: 50vh;
   background: rgb(59, 127, 255);
@@ -33,6 +43,12 @@
 
 #compSelection {
   transform: rotate(180deg);
+}
+
+.compScore {
+  border-top-left-radius: var(--borderRadius);
+  border-top-right-radius: var(--borderRadius);
+  border-bottom: 0;
 }
 
 #reset {
@@ -58,6 +74,12 @@
   justify-content: flex-end;
   align-items:center;
   gap: 4px;
+}
+
+.playerScore {
+  border-bottom-left-radius: var(--borderRadius);
+  border-bottom-right-radius: var(--borderRadius);
+  border-top: 0;
 }
 
 .buttons {
