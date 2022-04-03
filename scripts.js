@@ -7,7 +7,8 @@ function playRound(playerSelection, computerSelection) {
     const loseText = `You lose! ${computerSelection} beats ${playerSelection.toLowerCase()}.`;
     const winText = `You win! ${playerSelection} beats ${computerSelection.toLowerCase()}.`;
     const drawText = "It's a draw!";
-
+    
+    deleteDiv('#result');
     if(playerSelection === computerSelection ) {
         createDiv(drawText, '#result');
         return drawText;
@@ -29,9 +30,9 @@ function computerPlay() {
     //generate random number up to arrayLength
     const pick = Math.floor(Math.random()*choices.length)
     const cpuChoice = choices[pick];
-    const cText = `Computer plays ${cpuChoice.toLowerCase()}.`;
-    deleteDiv('#result');
-    createDiv(cText, '#result');
+    // const cText = `Computer plays ${cpuChoice.toLowerCase()}.`;
+    // deleteDiv('#result');
+    // createDiv(cText, '#result');
     displaySelection(cpuChoice.toLowerCase(), 'compSelection')
     return cpuChoice
 }
