@@ -1,14 +1,19 @@
+let gameMode = true;
+const pScore = document.getElementById('playerScore');
+const cScore = document.getElementById('compScore');
+const resetButton = document.querySelector('#reset');
+resetButton.addEventListener('click', reset)
+const buttons = document.querySelectorAll('#rock,#paper,#scissors');
+buttons.forEach(button => button.addEventListener('click', playerSelection))
 
 
 function playRound(playerSelection, computerSelection) {
-    // compare computer and player selction
-    // select winner or draw
-
     const loseText = `You lose! ${computerSelection} beats ${playerSelection.toLowerCase()}.`;
     const winText = `You win! ${playerSelection} beats ${computerSelection.toLowerCase()}.`;
     const drawText = "It's a draw!";
-    
+
     deleteDiv('#result');
+
     if(playerSelection === computerSelection ) {
         createDiv(drawText, '#result');
         return drawText;
@@ -22,11 +27,9 @@ function playRound(playerSelection, computerSelection) {
     return winText;
 }
 
-
 // generate computer selection randomly
 function computerPlay() {
     const choices = ['Rock', 'Paper', 'Scissors']
-
     //generate random number up to arrayLength
     const pick = Math.floor(Math.random()*choices.length)
     const cpuChoice = choices[pick];
@@ -43,56 +46,6 @@ function playerPlay(pSelect) {
     return game(pChoice);
 }
 
-const pScore = document.getElementById('playerScore');
-const cScore = document.getElementById('compScore');
-
-function game(pSelect) {
-    
-    
-    let playerScore = parseInt(pScore.textContent);
-    let computerScore = parseInt(cScore.textContent);
-    let scoreToWin = 5;
-
-    const cSelect = computerPlay();
-    const roundResult = playRound(pSelect, cSelect)
-    if (roundResult.includes("win")) {
-        pScore.textContent = ++playerScore;
-        if (playerScore >= scoreToWin) gameMode = false;
-    } else if (roundResult.includes("lose")) {
-        cScore.textContent = ++computerScore;
-        if (computerScore >= scoreToWin) gameMode = false;
-        }
-
-        if(playerScore >= scoreToWin || computerScore >= scoreToWin) {
-            showFinalResult(playerScore, computerScore)
-        }
-}
-
-const resetButton = document.querySelector('#reset');
-resetButton.addEventListener('click', reset)
-
-function showFinalResult(playerScore, computerScore) {
-    if (playerScore > computerScore) {
-        deleteDiv('#result');
-        return createDiv("Final Result: You win!", '#result');
-    }
-    else if (playerScore< computerScore) {
-        deleteDiv('#result');
-        return createDiv("Final Result: You lose..", '#result');
-    }
-    return "Final Result: It's a draw.";
-}
-
-function reset() {
-    pScore.textContent = 0;
-    cScore.textContent = 0;
-    deleteDiv('#result');
-    displaySelection('', 'playerSelection');
-    displaySelection('', 'compSelection')
-    gameMode = true;
-}
-
-let gameMode = true;
 function playerSelection() {
     if (gameMode){
         displaySelection(this.id, 'playerSelection')
@@ -100,9 +53,16 @@ function playerSelection() {
     }
 }
 
-const buttons = document.querySelectorAll('#rock,#paper,#scissors');
-buttons.forEach(button => button.addEventListener('click', playerSelection))
-
+function showFinalResult(playerScore, computerScore) {
+    deleteDiv('#result');
+    if (playerScore > computerScore) {
+        return createDiv("Final Result: You win!", '#result');
+    }
+    else if (playerScore< computerScore) {
+        return createDiv("Final Result: You lose..", '#result');
+    }
+    return "Final Result: It's a draw.";
+}
 
 function createDiv(str, container){
     const cont = document.querySelector(container)
@@ -127,4 +87,33 @@ function displaySelection(selection, player) {
     } else if(selection == 'scissors') {
         img.src = "./images/scissors.svg"
     } else img.src = ""
+}
+
+function game(pSelect) {
+    let playerScore = parseInt(pScore.textContent);
+    let computerScore = parseInt(cScore.textContent);
+    let scoreToWin = 5;
+
+    const cSelect = computerPlay();
+    const roundResult = playRound(pSelect, cSelect)
+    if (roundResult.includes("win")) {
+        pScore.textContent = ++playerScore;
+        if (playerScore >= scoreToWin) gameMode = false;
+    } else if (roundResult.includes("lose")) {
+        cScore.textContent = ++computerScore;
+        if (computerScore >= scoreToWin) gameMode = false;
+        }
+
+        if(playerScore >= scoreToWin || computerScore >= scoreToWin) {
+            showFinalResult(playerScore, computerScore)
+        }
+}
+
+function reset() {
+    pScore.textContent = 0;
+    cScore.textContent = 0;
+    deleteDiv('#result');
+    displaySelection('', 'playerSelection');
+    displaySelection('', 'compSelection')
+    gameMode = true;
 }
