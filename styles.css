@@ -6,12 +6,23 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 1.1em;
+  font-size: 30px;
 }
 
 .wrapper {
   width: 500px;
   margin: 0 auto;
+}
+
+@media (max-width: 500px) {
+  
+  * {
+    font-size: 20px;
+  }
+
+  .wrapper {
+    width: 95%;
+  }
 }
 
 .flex {
@@ -31,7 +42,7 @@ button {
 
 .playerScore, .compScore {
   background-color: white;
-  width: 250px;
+  width: 70%;
   text-align: center;
   padding: 10px;
 }
@@ -101,6 +112,7 @@ button {
 
 #result {
   padding: 10px;
+  font-size: 1.1em;
 }
 .buttons {
   width: 100%;
