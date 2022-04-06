@@ -6,22 +6,23 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .wrapper {
-  width: 500px;
+  width: 95%;
   margin: 0 auto;
 }
 
-@media (max-width: 500px) {
-  
-  * {
-    font-size: 20px;
-  }
-
+@media (min-width: 800px) {
   .wrapper {
-    width: 95%;
+    width: 40vw;
+  }
+}
+
+@media (min-width: 1800px) {
+  .wrapper {
+    width: 20vw;
   }
 }
 
@@ -37,12 +38,12 @@ button {
 }
 
 #playerSelection, #compSelection {
-  height: 30vh;
+  height: 20vh;
 }
 
 .playerScore, .compScore {
   background-color: white;
-  width: 70%;
+  width: 100%;
   text-align: center;
   padding: 10px;
 }
